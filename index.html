@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#0D2F26" />
+    <meta
+      name="description"
+      content="Selecciona español o inglés para explorar los servicios de Comfort &amp; Glow SPA."
+    />
+    <title>Comfort &amp; Glow SPA · Español / English</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/locale-router.js"></script>
+  </head>
+  <body class="language-gateway">
+    <main class="gateway-card" aria-labelledby="gateway-title">
+      <div class="gateway-logo-frame">
+        <img src="/images/logo-comfort-glow-spa.png" alt="Comfort &amp; Glow SPA — Belleza y bienestar" width="1800"
+          height="720" decoding="async" />
+      </div>
+      <p class="eyebrow">Belleza · Beauty · Bienestar</p>
+      <h1 id="gateway-title">Elige tu idioma<br /><span>Choose your language</span></h1>
+      <p class="gateway-copy">
+        Te llevaremos a la experiencia en tu idioma preferido. · We’ll take you
+        to the experience in your preferred language.
+      </p>
+      <nav class="gateway-actions" aria-label="Language selection">
+        <a class="button button--gold" href="/es/" data-language-choice="es">Español</a>
+        <a class="button button--outline-light" href="/en/" data-language-choice="en">English</a>
+      </nav>
+      <p class="gateway-status" data-gateway-status aria-live="polite"></p>
+    </main>
+  </body>
+</html>

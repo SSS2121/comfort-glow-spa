@@ -1,0 +1,33 @@
+# Dependencies and generated output
+node_modules/
+dist/
+.vite/
+coverage/
+artifacts/
+
+# Vercel local state
+.vercel/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Source spreadsheets must never be deployed with the static site
+*.xlsx
+*.xls
