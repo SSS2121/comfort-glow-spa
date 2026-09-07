@@ -8,7 +8,7 @@ A static, responsive, and bilingual website for a nail, beauty, and wellness bus
 - Complete source inventory: **87 options**, **61 grouped services**, and **9 categories**. The website temporarily publishes **83 options / 57 services** while "Full Face" is being resolved.
 - Prices preserved from the Excel file and displayed in USD with two decimal places.
 - Safe search engine, category filters, and expandable cards.
-- Ten hyper-realistic editorial images and a transparent logo, reviewed and published as PNGs.
+- Fourteen hyper-realistic editorial images and a transparent logo, reviewed and published as PNGs.
 - Responsive design from 320px, keyboard navigation, and reduced motion support.
 - Security headers for Vercel and an insecure pattern scanner.
 - No forms, first-party cookies, proprietary APIs, secrets, or direct personal data capture; includes Vercel Web Analytics.
@@ -86,9 +86,15 @@ Vite copies the contents of `public/` directly to the root of the site. That is 
 | `public/images/hair-removal.png` | `/images/hair-removal.png` |
 | `public/images/exfoliation.png` | `/images/exfoliation.png` |
 | `public/images/body-care.png` | `/images/body-care.png` |
+| `public/images/depilation.png` | `/images/depilation.png` |
+| `public/images/nail-care.png` | `/images/nail-care.png` |
+| `public/images/beauty-care.png` | `/images/beauty-care.png` |
+| `public/images/accessible-home-care.png` | `/images/accessible-home-care.png` |
 | `public/images/logo-comfort-glow-spa.png` | `/images/logo-comfort-glow-spa.png` |
 
 `npm.cmd run images:build` preserves those base files as maximum resolution versions and generates additional responsive PNGs from the masters: `hero-desktop-768.png` y `hero-desktop-1152.png`; `hero-mobile-540.png` y `hero-mobile-810.png`; and `-480.png`/`-800.png` variants for the editorial images. The ES/EN HTML files use `srcset` and `sizes` so the browser downloads the appropriate size. All variants remain in truecolor PNG, without quantization or replacing the masters.
+
+Client-reference placement: `Depilacion.jpeg` was recreated as `depilation.png` for the Hair Removal/Depilación featured card; `identifica.jpeg` was interpreted as combined manicure and pedicure care and placed in the gallery as `nail-care.png`; `identifica(2).jpeg` was interpreted as integrated facial and nail care and placed in the gallery as `beauty-care.png`. The generated photographs preserve the site's forest-green, ivory, sage, and champagne-gold visual direction.
 
 The WhatsApp number must be saved only with digits and country code, for example `15551234567`; it must not start with `+`. When valid, the general CTAs and those for each service will activate automatically. No WhatsApp key is needed.
 

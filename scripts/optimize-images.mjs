@@ -16,6 +16,10 @@ const assets = [
   { name: "anti-aging-facial", width: 1280, variants: [480, 800] },
   { name: "acne-facial", width: 1280, variants: [480, 800] },
   { name: "hair-removal", width: 1280, variants: [480, 800] },
+  { name: "depilation", width: 1280, variants: [480, 800] },
+  { name: "nail-care", width: 1280, variants: [480, 800] },
+  { name: "beauty-care", width: 1280, variants: [480, 800] },
+  { name: "accessible-home-care", width: 1080, variants: [480, 800] },
   { name: "exfoliation", width: 1280, variants: [480, 800] },
   { name: "body-care", width: 1280, variants: [480, 800] },
 ];
