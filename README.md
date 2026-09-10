@@ -4,7 +4,7 @@ A static, responsive, and bilingual website for a nail, beauty, and wellness bus
 
 ## Current Status
 
-- Independent routes in Spanish and English: `/es/` and `/en/`.
+- Independent routes in Spanish and English: `/es/` and `/en/`, with privacy pages at `/es/privacidad.html` and `/en/privacy.html`.
 - Complete source inventory: **87 options**, **61 grouped services**, and **9 categories**. The website temporarily publishes **83 options / 57 services** while "Full Face" is being resolved.
 - Prices preserved from the Excel file and displayed in USD with two decimal places.
 - Safe search engine, category filters, and expandable cards.
@@ -12,6 +12,7 @@ A static, responsive, and bilingual website for a nail, beauty, and wellness bus
 - Responsive design from 320px, keyboard navigation, and reduced motion support.
 - Security headers for Vercel and an insecure pattern scanner.
 - No forms, first-party cookies, proprietary APIs, secrets, or direct personal data capture; includes Vercel Web Analytics.
+- The business WhatsApp number is confirmed and enables the general and service-specific booking links.
 
 The reviewed source file was `Menu_Servicios_Precios_Descripciones-1.xlsx` with SHA-256 `CECB61F55D8BB2023616309C92B7F9E6034E8928E90F2E417591460556EEC25A`. The Excel file **is not copied or published** with the web.
 
@@ -62,7 +63,7 @@ Vercel must use the Vite preset; the output is generated in `dist/`. The configu
 
 ## Where to Update Information
 
-- Business data, hours, WhatsApp, and booking rules: `src/config/site.js`.
+- Business data, hours, confirmed WhatsApp number, and booking rules: `src/config/site.js`.
 - General ES/EN texts: `src/data/ui-content.js` and the HTML for each language.
 - Services and prices: `src/data/services.js`.
 - Palette and design: `src/styles.css`.
@@ -92,7 +93,7 @@ Vite copies the contents of `public/` directly to the root of the site. That is 
 
 The current photographs were supplied or explicitly approved by the client. Their filenames and placements are contractual project data: `depilation.png` remains in the Depilación/Hair Removal featured card, the other featured photographs remain with their respective services, `nails.png` and `toenails.png` remain in the gallery, and `accessible-home-care.png` remains in the reduced-mobility section.
 
-The WhatsApp number must be saved only with digits and country code, for example `15551234567`; it must not start with `+`. When valid, the general CTAs and those for each service will activate automatically. No WhatsApp key is needed.
+The confirmed WhatsApp number is stored in `src/config/site.js` using only digits and its country code, without `+`, spaces, or hyphens. The general CTAs and those for each service use it to create public booking links automatically. No WhatsApp key or environment variable is needed.
 
 The delivered transparent logo is integrated from `/images/Logos/logo-comfort-glow-spa.png`. A protected byte-identical copy is stored at `assets/masters/client/logo-comfort-glow-spa.png`; the image build validates it but does not recreate or overwrite it. The header uses an ivory background to preserve the contrast of the logo's original green.
 
@@ -117,7 +118,7 @@ Gold is used as an accent, not as text on ivory. The main reading combinations e
 - WhatsApp links are only built with a validated fixed number and existing catalog data.
 - The CSP policy blocks inline scripts, `eval`, iframes, objects, and external origins.
 - Fonts and images are served from the same domain.
-- The Excel file, `.env` files, secrets, and Vercel local states are excluded.
+- The Excel file, secrets, and Vercel local states are excluded.
 - Vercel Analytics loads from same-deployment routes (`/_vercel/insights/`) allowed by the CSP; it will not be operational until enabled in Vercel.
 
 For future changes, always run `npm.cmd run check` before deploying.
