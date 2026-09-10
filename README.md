@@ -8,7 +8,7 @@ A static, responsive, and bilingual website for a nail, beauty, and wellness bus
 - Complete source inventory: **87 options**, **61 grouped services**, and **9 categories**. The website temporarily publishes **83 options / 57 services** while "Full Face" is being resolved.
 - Prices preserved from the Excel file and displayed in USD with two decimal places.
 - Safe search engine, category filters, and expandable cards.
-- Fourteen hyper-realistic editorial images and a transparent logo, reviewed and published as PNGs.
+- Ten client-approved editorial photographs and a transparent logo, published as PNGs without altering their content or placement.
 - Responsive design from 320px, keyboard navigation, and reduced motion support.
 - Security headers for Vercel and an insecure pattern scanner.
 - No forms, first-party cookies, proprietary APIs, secrets, or direct personal data capture; includes Vercel Web Analytics.
@@ -66,39 +66,35 @@ Vercel must use the Vite preset; the output is generated in `dist/`. The configu
 - General ES/EN texts: `src/data/ui-content.js` and the HTML for each language.
 - Services and prices: `src/data/services.js`.
 - Palette and design: `src/styles.css`.
-- Image masters: `assets/masters/`.
+- Protected copies of the client-approved images: `assets/masters/client/`.
 - Deployable PNG images: `public/images/`.
 - Prompts and visual review: `docs/image-prompts.md`.
 
 ### Public Image Routes
 
-Vite copies the contents of `public/` directly to the root of the site. That is why a file saved as `public/images/manicure.png` is used in HTML as `/images/manicure.png`; **the URL must not contain `/public/`**.
+Vite copies the contents of `public/` directly to the root of the site. That is why a file saved as `public/images/facial.png` is used in HTML as `/images/facial.png`; **the URL must not contain `/public/`**.
 
 | Local File | URL on Web |
 | --- | --- |
-| `public/images/hero-desktop.png` | `/images/hero-desktop.png` |
-| `public/images/hero-mobile.png` | `/images/hero-mobile.png` |
-| `public/images/manicure.png` | `/images/manicure.png` |
-| `public/images/pedicure.png` | `/images/pedicure.png` |
+| `public/images/hero-facial.png` | `/images/hero-facial.png` |
 | `public/images/facial.png` | `/images/facial.png` |
 | `public/images/anti-aging-facial.png` | `/images/anti-aging-facial.png` |
 | `public/images/acne-facial.png` | `/images/acne-facial.png` |
-| `public/images/hair-removal.png` | `/images/hair-removal.png` |
 | `public/images/exfoliation.png` | `/images/exfoliation.png` |
-| `public/images/body-care.png` | `/images/body-care.png` |
 | `public/images/depilation.png` | `/images/depilation.png` |
-| `public/images/nail-care.png` | `/images/nail-care.png` |
-| `public/images/beauty-care.png` | `/images/beauty-care.png` |
+| `public/images/nails.png` | `/images/nails.png` |
+| `public/images/toenails.png` | `/images/toenails.png` |
+| `public/images/body-care.png` | `/images/body-care.png` |
 | `public/images/accessible-home-care.png` | `/images/accessible-home-care.png` |
-| `public/images/logo-comfort-glow-spa.png` | `/images/logo-comfort-glow-spa.png` |
+| `public/images/Logos/logo-comfort-glow-spa.png` | `/images/Logos/logo-comfort-glow-spa.png` |
 
-`npm.cmd run images:build` preserves those base files as maximum resolution versions and generates additional responsive PNGs from the masters: `hero-desktop-768.png` y `hero-desktop-1152.png`; `hero-mobile-540.png` y `hero-mobile-810.png`; and `-480.png`/`-800.png` variants for the editorial images. The ES/EN HTML files use `srcset` and `sizes` so the browser downloads the appropriate size. All variants remain in truecolor PNG, without quantization or replacing the masters.
+`npm.cmd run images:build` first verifies that every published base image is byte-for-byte identical to its protected copy in `assets/masters/client/`. It then generates only smaller responsive PNG derivatives: `hero-facial-540.png` and `hero-facial-810.png`, plus `-480.png`/`-800.png` variants for the other photographs. It never rewrites or deletes the client-approved base photographs or logo. The ES/EN HTML files use `srcset` and `sizes` so the browser downloads an appropriate size while preserving the same subject and placement.
 
-Client-reference placement: `Depilacion.jpeg` was recreated as `depilation.png` for the Hair Removal/Depilación featured card; `identifica.jpeg` was interpreted as combined manicure and pedicure care and placed in the gallery as `nail-care.png`; `identifica(2).jpeg` was interpreted as integrated facial and nail care and placed in the gallery as `beauty-care.png`. The generated photographs preserve the site's forest-green, ivory, sage, and champagne-gold visual direction.
+The current photographs were supplied or explicitly approved by the client. Their filenames and placements are contractual project data: `depilation.png` remains in the Depilación/Hair Removal featured card, the other featured photographs remain with their respective services, `nails.png` and `toenails.png` remain in the gallery, and `accessible-home-care.png` remains in the reduced-mobility section.
 
 The WhatsApp number must be saved only with digits and country code, for example `15551234567`; it must not start with `+`. When valid, the general CTAs and those for each service will activate automatically. No WhatsApp key is needed.
 
-The delivered logo was reconstructed in high resolution, processed with a real alpha channel, and integrated from `/images/logo-comfort-glow-spa.png`. The master with a chromatic background is preserved in `assets/masters/logo-chroma.png`; `npm.cmd run images:build` regenerates the transparent PNG reproducibly. The header uses an ivory background to preserve the contrast of the logo's original green.
+The delivered transparent logo is integrated from `/images/Logos/logo-comfort-glow-spa.png`. A protected byte-identical copy is stored at `assets/masters/client/logo-comfort-glow-spa.png`; the image build validates it but does not recreate or overwrite it. The header uses an ivory background to preserve the contrast of the logo's original green.
 
 ## Approved Palette
 

@@ -5,11 +5,11 @@
  */
 export const siteConfig = Object.freeze({
   brandName: "Comfort & Glow SPA",
-  logoPath: "/images/logo-comfort-glow-spa.png",
+  logoPath: "/images/Logos/logo-comfort-glow-spa.png",
   countryCode: "US",
   currency: "USD",
   showCents: true,
-  whatsappNumber: "19048880618",
+  whatsappNumber: "19049306191",
   hours: Object.freeze({
     es: "Lunes a sábado · 8:00 a. m. – 6:00 p. m.",
     en: "Monday–Saturday · 8:00 a.m.–6:00 p.m.",

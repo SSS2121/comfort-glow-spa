@@ -18,8 +18,27 @@ const STORAGE_KEY = "beautyStudio.locale.v1";
 const language = resolveLanguage(document.documentElement.lang);
 const copy = uiContent[language];
 const groupedServices = groupServices(services.filter((service) => service.published !== false));
-const validCategoryIds = new Set(categories.map((category) => category.id));
 const categoryById = new Map(categories.map((category) => [category.id, category]));
+const filterCategories = [];
+const serviceCategoryIdsByFilterId = new Map();
+const filterIdByServiceCategoryId = new Map();
+
+for (const category of categories) {
+  const filterId = category.filterId ?? category.id;
+  filterIdByServiceCategoryId.set(category.id, filterId);
+
+  if (!serviceCategoryIdsByFilterId.has(filterId)) {
+    filterCategories.push({
+      id: filterId,
+      name: category.filterName ?? category.name,
+    });
+    serviceCategoryIdsByFilterId.set(filterId, new Set());
+  }
+
+  serviceCategoryIdsByFilterId.get(filterId).add(category.id);
+}
+
+const validCategoryIds = new Set(filterCategories.map((category) => category.id));
 
 const state = {
   categoryId: "all",
@@ -56,7 +75,7 @@ function localizedConfig(value) {
 
 function safeImagePath(value) {
   return typeof value === "string"
-    && /^\/images\/[a-z0-9/_-]+\.(?:avif|png|webp)$/u.test(value)
+    && /^\/images\/[a-z0-9/_-]+\.(?:avif|png|webp)$/iu.test(value)
     && !value.includes("..");
 }
 
@@ -156,7 +175,10 @@ function configureBusinessDetails() {
 function configuredCategoryFromUrl() {
   const url = new URL(window.location.href);
   const candidate = url.searchParams.get("category");
-  const categoryId = candidate && validCategoryIds.has(candidate) ? candidate : "all";
+  const canonicalCandidate = filterIdByServiceCategoryId.get(candidate) ?? candidate;
+  const categoryId = canonicalCandidate && validCategoryIds.has(canonicalCandidate)
+    ? canonicalCandidate
+    : "all";
 
   if (categoryId === "all") url.searchParams.delete("category");
   else url.searchParams.set("category", categoryId);
@@ -182,7 +204,7 @@ function renderFilters() {
   const fragment = document.createDocumentFragment();
   const choices = [
     { id: "all", name: { es: copy.allCategories, en: copy.allCategories } },
-    ...categories,
+    ...filterCategories,
   ];
 
   for (const category of choices) {
@@ -299,9 +321,10 @@ function renderCatalog() {
   if (!elements.grid) return;
 
   const searchMatches = filterServices(groupedServices, state.query, language);
+  const selectedServiceCategoryIds = serviceCategoryIdsByFilterId.get(state.categoryId);
   const visibleServices = state.categoryId === "all"
     ? searchMatches
-    : searchMatches.filter((service) => service.categoryId === state.categoryId);
+    : searchMatches.filter((service) => selectedServiceCategoryIds?.has(service.categoryId));
   const fragment = document.createDocumentFragment();
 
   for (const service of visibleServices) fragment.append(createServiceCard(service));

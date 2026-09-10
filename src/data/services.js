@@ -4,14 +4,20 @@ export const categories = [
   {
     id: "facial-hair-removal",
     name: { es: "Depilación facial", en: "Facial Hair Removal" },
+    filterId: "hair-removal",
+    filterName: { es: "Depilación", en: "Hair Removal" },
   },
   {
     id: "body-hair-removal",
     name: { es: "Depilación corporal", en: "Body Hair Removal" },
+    filterId: "hair-removal",
+    filterName: { es: "Depilación", en: "Hair Removal" },
   },
   {
     id: "bikini-hair-removal",
     name: { es: "Depilación bikini", en: "Bikini Hair Removal" },
+    filterId: "hair-removal",
+    filterName: { es: "Depilación", en: "Hair Removal" },
   },
   {
     id: "body-exfoliation",

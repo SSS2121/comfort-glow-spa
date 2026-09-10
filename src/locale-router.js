@@ -1,5 +1,7 @@
 const STORAGE_KEY = "beautyStudio.locale.v1";
 const supportedLanguages = new Set(["es", "en"]);
+const Buttons_spanish = document.querySelectorAll("[data-language-choice=es]");
+const Buttons_english = document.querySelectorAll("[data-language-choice=en]");
 
 function safeStoredLanguage() {
   try {
@@ -36,18 +38,22 @@ const preferredLanguage = safeStoredLanguage() ?? browserLanguage();
 const status = document.querySelector("[data-gateway-status]");
 const choiceLinks = document.querySelectorAll("[data-language-choice]");
 
-if (status) {
-  status.textContent = preferredLanguage === "en"
-    ? "Opening the English experience…"
-    : "Abriendo la experiencia en español…";
-}
-
-for (const link of choiceLinks) {
-  link.addEventListener("click", () => {
-    storeLanguage(link.dataset.languageChoice);
+Buttons_spanish.forEach((button) => {
+  button.addEventListener("click", () => {
+    status.textContent = preferredLanguage === "en"
+      ? "Opening the English experience…"
+      : "Abriendo la experiencia en español…";
+    storeLanguage(button.dataset.languageChoice);
+    window.location.replace(button.dataset.languageChoice === "en" ? "/en/" : "/es/");
   });
-}
+});
 
-window.setTimeout(() => {
-  window.location.replace(preferredLanguage === "en" ? "/en/" : "/es/");
-}, 650);
+Buttons_english.forEach((button) => {
+  button.addEventListener("click", () => {
+    status.textContent = preferredLanguage === "en"
+      ? "Opening the English experience…"
+      : "Abriendo la experiencia en español…";
+    storeLanguage(button.dataset.languageChoice);
+    window.location.replace(button.dataset.languageChoice === "en" ? "/en/" : "/es/");
+  });
+});
