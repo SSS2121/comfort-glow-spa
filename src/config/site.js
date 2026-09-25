@@ -9,7 +9,7 @@ export const siteConfig = Object.freeze({
   countryCode: "US",
   currency: "USD",
   showCents: true,
-  whatsappNumber: "19049306191",
+  whatsappNumber: "19049825307",
   hours: Object.freeze({
     es: "Lunes a sábado · 8:00 a. m. – 6:00 p. m.",
     en: "Monday–Saturday · 8:00 a.m.–6:00 p.m.",

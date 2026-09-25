@@ -1,3 +1,6 @@
+# Project Free Lance (completed)
+## for Comfort & Glow SPA
+
 # Comfort & Glow SPA — Bilingual Web Base
 
 A static, responsive, and bilingual website for a nail, beauty, and wellness business in the United States. It is prepared for deployment on Vercel without a backend, using semantic HTML, modern CSS, and vanilla JavaScript with Vite.
@@ -10,11 +13,11 @@ A static, responsive, and bilingual website for a nail, beauty, and wellness bus
 - Safe search engine, category filters, and expandable cards.
 - Ten client-approved editorial photographs and a transparent logo, published as PNGs without altering their content or placement.
 - Responsive design from 320px, keyboard navigation, and reduced motion support.
+- White backgrounds across the language gateway, content sections, catalog, contact panel, navigation, and footer.
 - Security headers for Vercel and an insecure pattern scanner.
 - No forms, first-party cookies, proprietary APIs, secrets, or direct personal data capture; includes Vercel Web Analytics.
 - The business WhatsApp number is confirmed and enables the general and service-specific booking links.
 
-The reviewed source file was `Menu_Servicios_Precios_Descripciones-1.xlsx` with SHA-256 `CECB61F55D8BB2023616309C92B7F9E6034E8928E90F2E417591460556EEC25A`. The Excel file **is not copied or published** with the web.
 
 ## Run Locally
 
@@ -95,20 +98,22 @@ The current photographs were supplied or explicitly approved by the client. Thei
 
 The confirmed WhatsApp number is stored in `src/config/site.js` using only digits and its country code, without `+`, spaces, or hyphens. The general CTAs and those for each service use it to create public booking links automatically. No WhatsApp key or environment variable is needed.
 
-The delivered transparent logo is integrated from `/images/Logos/logo-comfort-glow-spa.png`. A protected byte-identical copy is stored at `assets/masters/client/logo-comfort-glow-spa.png`; the image build validates it but does not recreate or overwrite it. The header uses an ivory background to preserve the contrast of the logo's original green.
+The delivered transparent logo is integrated from `/images/Logos/logo-comfort-glow-spa.png`. A protected byte-identical copy is stored at `assets/masters/client/logo-comfort-glow-spa.png`; the image build validates it but does not recreate or overwrite it. The header uses a white background to preserve the contrast of the logo's original green.
 
 ## Approved Palette
 
 | Role | Color |
 | --- | --- |
+| Primary Background | `#FFFFFF` |
 | Deep Forest | `#0D2F26` |
 | Leaf Green | `#2F5D50` |
 | Soft Sage | `#A7B9A8` |
 | Champagne Gold | `#C5A45D` |
+| Accessible Gold Text | `#8A6824` |
 | Warm Ivory | `#F7F2E7` |
 | Ink | `#1B211D` |
 
-Gold is used as an accent, not as text on ivory. The main reading combinations exceed WCAG AA.
+All structural surfaces use white. Deep forest and ink provide readable text, while leaf green and champagne gold remain accents for navigation, controls, and calls to action. Dark gradients are retained only over photographs to keep their captions legible. The main reading combinations exceed WCAG AA.
 
 ## Security and Privacy
 

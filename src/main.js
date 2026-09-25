@@ -1,5 +1,5 @@
 // =============================================================================
-// 1. IMPORTACIONES, CONSTANTES Y ESTADO GLOBAL
+// 1. IMPORTS, CONSTANTS, AND SHARED STATE
 // =============================================================================
 import { siteConfig } from "./config/site.js";
 import "./analytics.js";
@@ -17,12 +17,14 @@ import {
 const STORAGE_KEY = "beautyStudio.locale.v1";
 const language = resolveLanguage(document.documentElement.lang);
 const copy = uiContent[language];
+// Unpublished rows never reach the UI; the remaining rows are grouped into service cards.
 const groupedServices = groupServices(services.filter((service) => service.published !== false));
 const categoryById = new Map(categories.map((category) => [category.id, category]));
 const filterCategories = [];
 const serviceCategoryIdsByFilterId = new Map();
 const filterIdByServiceCategoryId = new Map();
 
+// A single visible filter may represent multiple internal catalog categories.
 for (const category of categories) {
   const filterId = category.filterId ?? category.id;
   filterIdByServiceCategoryId.set(category.id, filterId);
@@ -40,12 +42,13 @@ for (const category of categories) {
 
 const validCategoryIds = new Set(filterCategories.map((category) => category.id));
 
+// Category state is mirrored in the URL; search state remains local to the page.
 const state = {
   categoryId: "all",
   query: "",
 };
 
-// Referencias a elementos interactivos clave del DOM
+// Cache the interactive DOM nodes used by multiple rendering functions.
 const elements = {
   categoryFilters: document.querySelector("[data-category-filters]"),
   emptyState: document.querySelector("[data-empty-state]"),
@@ -58,7 +61,7 @@ const elements = {
 };
 
 // =============================================================================
-// 2. UTILIDADES DE MANIPULACIÓN SEGURA DEL DOM
+// 2. SAFE DOM HELPERS
 // =============================================================================
 function createNode(tagName, className, text) {
   const node = document.createElement(tagName);
@@ -74,6 +77,7 @@ function localizedConfig(value) {
 }
 
 function safeImagePath(value) {
+  // Accept local deployable images only, and reject path traversal segments.
   return typeof value === "string"
     && /^\/images\/[a-z0-9/_-]+\.(?:avif|png|webp)$/iu.test(value)
     && !value.includes("..");
@@ -91,7 +95,7 @@ function setContactValue(selector, value) {
 }
 
 // =============================================================================
-// 3. DATOS DE NEGOCIO, HORARIOS, POLÍTICAS Y RESERVAS WHATSAPP
+// 3. BUSINESS DETAILS, HOURS, POLICIES, AND WHATSAPP BOOKING
 // =============================================================================
 function configureBusinessDetails() {
   const brandName = typeof siteConfig.brandName === "string" && siteConfig.brandName.trim()
@@ -137,6 +141,7 @@ function configureBusinessDetails() {
     && /^\d{8,15}$/u.test(siteConfig.whatsappNumber);
   setContactValue("[data-whatsapp]", validPhone ? `+${siteConfig.whatsappNumber}` : null);
 
+  // This generic service name supplies localized text for the main booking CTA.
   const appointment = {
     name: { es: "una cita", en: "an appointment" },
     variant: { es: "", en: "" },
@@ -145,6 +150,7 @@ function configureBusinessDetails() {
 
   if (bookingUrl) {
     for (const trigger of document.querySelectorAll("[data-booking]")) {
+      // Replace disabled placeholders only after URL validation succeeds.
       const link = trigger instanceof HTMLAnchorElement
         ? trigger
         : createNode("a", trigger.className, copy.booking);
@@ -170,7 +176,7 @@ function configureBusinessDetails() {
 }
 
 // =============================================================================
-// 4. GESTIÓN DEL ESTADO EN LA URL (?category=...)
+// 4. URL STATE MANAGEMENT (?category=...)
 // =============================================================================
 function configuredCategoryFromUrl() {
   const url = new URL(window.location.href);
@@ -180,6 +186,7 @@ function configuredCategoryFromUrl() {
     ? canonicalCandidate
     : "all";
 
+  // Normalize aliases and discard unsupported values without creating history entries.
   if (categoryId === "all") url.searchParams.delete("category");
   else url.searchParams.set("category", categoryId);
   window.history.replaceState(null, "", url);
@@ -196,7 +203,7 @@ function updateCategoryUrl(hash = window.location.hash) {
 }
 
 // =============================================================================
-// 5. RENDERIZADO DE FILTROS DE CATEGORÍA
+// 5. CATEGORY FILTER RENDERING
 // =============================================================================
 function renderFilters() {
   if (!elements.categoryFilters) return;
@@ -226,13 +233,15 @@ function renderFilters() {
     fragment.append(button);
   }
 
+  // Replace the complete filter set in one DOM operation.
   elements.categoryFilters.replaceChildren(fragment);
 }
 
 // =============================================================================
-// 6. GENERACIÓN DE TARJETAS Y VARIANTES DEL CATÁLOGO (DOM)
+// 6. CATALOG CARD AND VARIANT CREATION
 // =============================================================================
 function createBookingAction(group, variant) {
+  // The helper returns null when the phone number or catalog text is unsafe.
   const bookingUrl = buildWhatsAppUrl(
     siteConfig.whatsappNumber,
     { name: group.name, variant: variant.variant },
@@ -315,13 +324,14 @@ function createServiceCard(group) {
 }
 
 // =============================================================================
-// 7. RENDERIZADO PRINCIPAL DEL CATÁLOGO Y CONTEO DE RESULTADOS
+// 7. CATALOG RENDERING AND RESULT COUNT
 // =============================================================================
 function renderCatalog() {
   if (!elements.grid) return;
 
   const searchMatches = filterServices(groupedServices, state.query, language);
   const selectedServiceCategoryIds = serviceCategoryIdsByFilterId.get(state.categoryId);
+  // Search first, then narrow the results with the selected public filter.
   const visibleServices = state.categoryId === "all"
     ? searchMatches
     : searchMatches.filter((service) => selectedServiceCategoryIds?.has(service.categoryId));
@@ -338,12 +348,13 @@ function renderCatalog() {
 }
 
 // =============================================================================
-// 8. BÚSQUEDA Y FILTRADO EN TIEMPO REAL
+// 8. REAL-TIME SEARCH AND FILTERING
 // =============================================================================
 function configureSearch() {
   if (!elements.search) return;
 
   elements.search.addEventListener("input", () => {
+    // Clamp user input before it reaches application state or the catalog renderer.
     const safeQuery = clampQuery(elements.search.value);
     if (elements.search.value !== safeQuery) elements.search.value = safeQuery;
     state.query = safeQuery;
@@ -361,7 +372,7 @@ function configureSearch() {
 }
 
 // =============================================================================
-// 9. CONEXIÓN INTERACTIVA: DESTACADOS (#destacado / #outstanding) -> CATÁLOGO
+// 9. FEATURED-CARD NAVIGATION TO THE CATALOG
 // =============================================================================
 function configureFeaturedLinks() {
   const catalogId = language === "en" ? "catalog" : "catalogo";
@@ -386,7 +397,7 @@ function configureFeaturedLinks() {
 }
 
 // =============================================================================
-// 10. MENÚ DE NAVEGACIÓN MÓVIL Y ACCESIBILIDAD (TECLA ESCAPE, FOCO)
+// 10. MOBILE NAVIGATION AND KEYBOARD ACCESSIBILITY
 // =============================================================================
 function configureNavigation() {
   if (!elements.menuToggle || !elements.navigation) return;
@@ -397,6 +408,7 @@ function configureNavigation() {
     elements.menuToggle.setAttribute("aria-expanded", "false");
     elements.menuToggle.setAttribute("aria-label", copy.menuOpen);
     document.body.classList.remove("menu-is-open");
+    // Keep collapsed mobile links out of the keyboard and accessibility trees.
     elements.navigation.inert = mobileNavigation.matches;
     if (restoreFocus) elements.menuToggle.focus();
   };
@@ -423,7 +435,7 @@ function configureNavigation() {
 }
 
 // =============================================================================
-// 11. CAMBIO Y PERSISTENCIA DE IDIOMA (LOCALSTORAGE)
+// 11. LANGUAGE SELECTION AND LOCALSTORAGE PERSISTENCE
 // =============================================================================
 function configureLocaleLinks() {
   for (const link of document.querySelectorAll("[data-locale-link]")) {
@@ -439,7 +451,7 @@ function configureLocaleLinks() {
 }
 
 // =============================================================================
-// 12. ANIMACIONES SUAVES AL HACER SCROLL (INTERSECTION OBSERVER)
+// 12. SCROLL REVEAL WITH REDUCED-MOTION SUPPORT
 // =============================================================================
 function configureReveal() {
   const revealItems = [...document.querySelectorAll("[data-reveal]")];
@@ -454,6 +466,7 @@ function configureReveal() {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
       entry.target.classList.add("is-visible");
+      // Reveal each item once; continued observation is unnecessary.
       observer.unobserve(entry.target);
     }
   }, { rootMargin: "0px 0px -8%", threshold: 0.08 });
@@ -462,8 +475,9 @@ function configureReveal() {
 }
 
 // =============================================================================
-// 13. FLUJO DE INICIALIZACIÓN DE LA APLICACIÓN
+// 13. APPLICATION INITIALIZATION
 // =============================================================================
+// Configure static details first, then controls, rendering, and visual effects.
 configureBusinessDetails();
 state.categoryId = configuredCategoryFromUrl();
 configureNavigation();
