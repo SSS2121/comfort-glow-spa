@@ -90,8 +90,37 @@ function setTextForAll(selector, value) {
 }
 
 function setContactValue(selector, value) {
-  const element = document.querySelector(selector);
-  if (element) element.textContent = value ?? copy.pending;
+  for (const element of document.querySelectorAll(selector)) {
+    element.textContent = value ?? copy.pending;
+  }
+}
+
+function configuredLocation() {
+  const location = siteConfig.location;
+  if (!location || typeof location !== "object") return null;
+
+  const serviceAreas = Array.isArray(location.serviceAreas)
+    ? location.serviceAreas
+      .map((area) => localizedConfig(area?.label))
+      .filter(Boolean)
+    : [];
+  if (serviceAreas.length > 0) {
+    const conjunction = language === "es" ? " y " : " and ";
+    return serviceAreas.length === 1
+      ? serviceAreas[0]
+      : `${serviceAreas.slice(0, -1).join(", ")}${conjunction}${serviceAreas.at(-1)}`;
+  }
+
+  const regionAndPostalCode = [location.addressRegion, location.postalCode]
+    .filter((value) => typeof value === "string" && value.trim())
+    .join(" ");
+  const addressParts = [
+    location.streetAddress,
+    location.addressLocality,
+    regionAndPostalCode,
+  ].filter((value) => typeof value === "string" && value.trim());
+
+  return addressParts.length > 0 ? addressParts.join(", ") : null;
 }
 
 // =============================================================================
@@ -108,15 +137,29 @@ function configureBusinessDetails() {
   const logoElements = document.querySelectorAll("[data-logo]");
   if (safeImagePath(siteConfig.logoPath)) {
     for (const logo of logoElements) {
+      const fallback = logo.nextElementSibling;
+      const showLogo = () => {
+        logo.hidden = false;
+        if (fallback instanceof HTMLElement) fallback.hidden = true;
+      };
+      const showFallback = () => {
+        logo.hidden = true;
+        if (fallback instanceof HTMLElement) fallback.hidden = false;
+      };
+
+      logo.addEventListener("load", showLogo, { once: true });
+      logo.addEventListener("error", showFallback, { once: true });
       logo.src = siteConfig.logoPath;
       logo.alt = "";
-      logo.hidden = false;
-      const fallback = logo.nextElementSibling;
-      if (fallback) fallback.hidden = true;
+      if (logo.complete) {
+        if (logo.naturalWidth > 0) showLogo();
+        else showFallback();
+      }
     }
   }
 
   setContactValue("[data-hours]", localizedConfig(siteConfig.hours));
+  setContactValue("[data-location]", configuredLocation());
 
   const bookingPolicy = siteConfig.bookingPolicy;
   if (bookingPolicy && typeof bookingPolicy === "object") {

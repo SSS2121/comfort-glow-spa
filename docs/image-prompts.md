@@ -1,6 +1,6 @@
 # Client-supplied image inventory
 
-Updated on 2026-09-09. The photographs currently displayed on the website were supplied or explicitly approved by the client. They must not be replaced, moved to another section, regenerated, or visually edited.
+Updated on 2026-10-27. The photographs currently displayed on the website were supplied or explicitly approved by the client. They must not be replaced, moved to another section, regenerated, or visually edited.
 
 ## Placement and protected copies
 
@@ -16,10 +16,10 @@ Updated on 2026-09-09. The photographs currently displayed on the website were s
 | `public/images/toenails.png` | `assets/masters/client/toenails.png` | Second gallery position |
 | `public/images/body-care.png` | `assets/masters/client/body-care.png` | Third gallery position |
 | `public/images/accessible-home-care.png` | `assets/masters/client/accessible-home-care.png` | In-home service for reduced mobility |
-| `public/images/Logos/logo-comfort-glow-spa.png` | `assets/masters/client/logo-comfort-glow-spa.png` | Gateway and site header |
+| `public/images/Logos/logo-d3-glow-spa.png` | `assets/masters/client/logo-d3-glow-spa.png` | Transparent official logo for gateway and site header |
 
 ## Build safeguards
 
-`npm.cmd run images:build` compares every public base file with its protected copy before generating responsive derivatives. A mismatch in file contents or dimensions stops the build. The script creates only smaller PNG variants and never deletes or overwrites a client-approved base image or the logo.
+`npm.cmd run images:build` compares every public base file with its protected copy before generating responsive derivatives. A mismatch in file contents or dimensions stops the build. The official logo must also retain a non-opaque alpha channel. The script creates only smaller PNG variants and exact D3 monogram favicons; it never deletes or overwrites a client-approved base image or the logo.
 
 The `src` value in each language always points to the original public PNG. The `srcset` values point only to resized versions of that same file, so responsive loading does not introduce a different photograph or placement.

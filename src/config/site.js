@@ -4,16 +4,64 @@
  * will show an honest placeholder instead of publishing invented details.
  */
 export const siteConfig = Object.freeze({
-  brandName: "Comfort & Glow SPA",
-  logoPath: "/images/Logos/logo-comfort-glow-spa.png",
+  brandName: "D3 Glow Spa",
+  logoPath: "/images/Logos/logo-d3-glow-spa-640.png",
+  siteUrl: "https://d3glowspa.com",
   countryCode: "US",
   currency: "USD",
   showCents: true,
   whatsappNumber: "19049825307",
+  // The business is mobile-only. The private base is represented at city
+  // level for regional SEO, while only the authorized service areas are shown
+  // to customers. Never publish the private street address or coordinates.
+  location: Object.freeze({
+    streetAddress: null,
+    addressLocality: "Orange Park",
+    addressRegion: "FL",
+    postalCode: null,
+    addressCountry: "US",
+    serviceAreas: Object.freeze([
+      Object.freeze({
+        "@type": "City",
+        addressLocality: "Orange Park",
+        addressRegion: "FL",
+        addressCountry: "US",
+        label: Object.freeze({
+          es: "Orange Park, Florida",
+          en: "Orange Park, Florida",
+        }),
+      }),
+      Object.freeze({
+        "@type": "City",
+        addressLocality: "Jacksonville",
+        addressRegion: "FL",
+        addressCountry: "US",
+        label: Object.freeze({
+          es: "Jacksonville, Florida",
+          en: "Jacksonville, Florida",
+        }),
+      }),
+    ]),
+    latitude: null,
+    longitude: null,
+  }),
+  socialProfileUrls: Object.freeze([]),
   hours: Object.freeze({
     es: "Lunes a sábado · 8:00 a. m. – 6:00 p. m.",
     en: "Monday–Saturday · 8:00 a.m.–6:00 p.m.",
   }),
+  openingHours: Object.freeze([Object.freeze({
+    days: Object.freeze([
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ]),
+    opens: "08:00",
+    closes: "18:00",
+  })]),
   consultationIsFree: true,
   bookingPolicy: Object.freeze({
     depositUsd: 15,

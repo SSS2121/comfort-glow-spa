@@ -1,6 +1,6 @@
 export const uiContent = Object.freeze({
   es: Object.freeze({
-    brandPlaceholder: "Comfort & Glow SPA",
+    brandPlaceholder: "D3 Glow Spa",
     skipLink: "Saltar al contenido",
     menuOpen: "Abrir menú",
     menuClose: "Cerrar menú",
@@ -10,11 +10,11 @@ export const uiContent = Object.freeze({
     navContact: "Contacto",
     booking: "Reservar cita",
     bookingInfo: "Información de reserva",
-    bookingPending: "WhatsApp por confirmar",
+    bookingPending: "Reservar por WhatsApp",
     eyebrow: "Uñas · Piel · Bienestar",
-    heroTitle: "Cuida tu piel, tus uñas y tu bienestar.",
+    heroTitle: "Belleza y bienestar a domicilio.",
     heroText:
-      "Explora faciales, manicura, pedicura, exfoliación corporal y depilación en una experiencia pensada para ti.",
+      "Faciales, manicura, pedicura, exfoliación corporal y depilación a domicilio en Orange Park y Jacksonville.",
     exploreServices: "Explorar servicios",
     editorialNote: "Consulta gratuita antes de cada tratamiento o servicio.",
     experiencesEyebrow: "Los más especiales",
@@ -56,11 +56,11 @@ export const uiContent = Object.freeze({
     contactEyebrow: "Próximo paso",
     contactTitle: "Tu cita comienza aquí",
     contactText:
-      "El número de WhatsApp está por confirmar. Todas las consultas previas son gratuitas.",
+      "Agenda por WhatsApp y confirma directamente la disponibilidad del servicio y los detalles de desplazamiento.",
     hoursLabel: "Horario",
     whatsappLabel: "WhatsApp",
     pending: "Por confirmar",
-    footerNote: "Servicios de belleza y bienestar · EE. UU.",
+    footerNote: "Servicios a domicilio · Orange Park y Jacksonville, Florida",
     languageLabel: "Cambiar idioma a inglés",
     imageAlt: Object.freeze({
       hero: "Manos adultas con manicura natural sobre lino marfil y fondo verde oscuro",
@@ -77,7 +77,7 @@ export const uiContent = Object.freeze({
     }),
   }),
   en: Object.freeze({
-    brandPlaceholder: "Comfort & Glow SPA",
+    brandPlaceholder: "D3 Glow Spa",
     skipLink: "Skip to content",
     menuOpen: "Open menu",
     menuClose: "Close menu",
@@ -87,11 +87,11 @@ export const uiContent = Object.freeze({
     navContact: "Contact",
     booking: "Book an Appointment",
     bookingInfo: "Booking information",
-    bookingPending: "WhatsApp number to be confirmed",
+    bookingPending: "Book through WhatsApp",
     eyebrow: "Nails · Skin · Wellness",
-    heroTitle: "Care for your skin, nails, and well-being.",
+    heroTitle: "Mobile beauty and wellness at your door.",
     heroText:
-      "Explore facials, manicures, pedicures, body exfoliation, and hair removal in an experience centered on you.",
+      "Facials, manicures, pedicures, body exfoliation, and waxing at your location in Orange Park and Jacksonville.",
     exploreServices: "Explore Services",
     editorialNote: "Complimentary consultation before every treatment or service.",
     experiencesEyebrow: "Signature selections",
@@ -133,11 +133,11 @@ export const uiContent = Object.freeze({
     contactEyebrow: "Next step",
     contactTitle: "Your appointment starts here",
     contactText:
-      "The WhatsApp number is still to be confirmed. Every consultation before service is complimentary.",
+      "Book through WhatsApp and confirm service availability and travel details directly.",
     hoursLabel: "Hours",
     whatsappLabel: "WhatsApp",
     pending: "To be confirmed",
-    footerNote: "Beauty and wellness services · United States",
+    footerNote: "Mobile services · Orange Park and Jacksonville, Florida",
     languageLabel: "Switch language to Spanish",
     imageAlt: Object.freeze({
       hero: "Adult hands with a natural manicure on ivory linen and a dark green background",

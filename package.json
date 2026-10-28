@@ -1,17 +1,19 @@
 {
-  "name": "bilingual-beauty-studio",
+  "name": "d3-glow-spa",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "images:build": "node scripts/optimize-images.mjs",
-    "build": "npm run images:build && vite build",
+    "seo:build": "node scripts/generate-discovery.mjs",
+    "build": "npm run images:build && npm run seo:build && vite build",
     "preview": "vite preview",
     "test": "node --test",
     "check:browser": "node scripts/browser-check.mjs",
     "check:security": "node scripts/security-check.mjs",
-    "check": "npm run test && npm run check:security && npm run build"
+    "check:production": "node scripts/validate-production.mjs",
+    "check": "npm run test && npm run check:security && npm run build && npm run check:production"
   },
   "devDependencies": {
     "@fontsource/cormorant-garamond": "^5.3.0",
