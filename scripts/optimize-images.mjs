@@ -8,6 +8,17 @@ const projectRoot = resolve(import.meta.dirname, "..");
 const clientSourceDirectory = resolve(projectRoot, "assets", "masters", "client");
 const outputDirectory = resolve(projectRoot, "public", "images");
 const logoOutputDirectory = resolve(outputDirectory, "Logos");
+const slideshowOutputDirectory = resolve(outputDirectory, "slideshow");
+const slideshowNames = [
+  "spa-pedicure",
+  "warm-manicure",
+  "accessible-manicure",
+  "leg-waxing",
+  "body-exfoliation",
+  "pink-nail-art",
+  "facial-treatment",
+  "wood-therapy",
+];
 
 // These are the exact photographs approved and supplied by the client. Their
 // public base files are never rewritten or removed; the build only creates
@@ -44,6 +55,7 @@ const faviconCrop = Object.freeze({
 await Promise.all([
   mkdir(outputDirectory, { recursive: true }),
   mkdir(logoOutputDirectory, { recursive: true }),
+  mkdir(slideshowOutputDirectory, { recursive: true }),
 ]);
 
 async function fileHash(path) {
@@ -201,8 +213,25 @@ const faviconResults = await Promise.all([32, 180, 512].map(async (size) => {
   return `Logos/${filename}: ${size}x${size} alpha PNG ${Math.round(outputStats.size / 1024)} KB`;
 }));
 
+// Keep the supplied JPEGs unchanged; publish lightweight, uncropped WebP
+// derivatives for the full-width slideshow in both languages.
+const slideshowResults = await Promise.all(slideshowNames.flatMap((name) => (
+  [640, 1280].map(async (width) => {
+    const filename = `${name}-${width}.webp`;
+    const source = resolve(clientSourceDirectory, "slideshow", `${name}.jpeg`);
+    const output = resolve(slideshowOutputDirectory, filename);
+    await sharp(source)
+      .rotate()
+      .resize({ width, withoutEnlargement: true })
+      .webp({ quality: 85, effort: 5 })
+      .toFile(output);
+    const metadata = await sharp(output).metadata();
+    return `slideshow/${filename}: ${metadata.width}x${metadata.height} WebP`;
+  })
+)));
+
 const groupedResults = await Promise.all(assets.map(optimizeAsset));
-const results = [...logoResults, ...faviconResults, ...groupedResults.flat()];
-console.log(`Generated ${results.length} responsive PNG variants.`);
+const results = [...logoResults, ...faviconResults, ...groupedResults.flat(), ...slideshowResults];
+console.log(`Generated ${results.length} responsive image variants.`);
 console.log("Client-approved base images and logo were validated and left unchanged.");
 for (const result of results) console.log(`- ${result}`);

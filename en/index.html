@@ -8,15 +8,15 @@
   <meta name="theme-color" content="#0D2F26" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="description"
-    content="Book mobile facials, manicures, pedicures, body exfoliation, and waxing in Orange Park and Jacksonville, FL, directly through WhatsApp." />
+    content="Book facials, manicures, pedicures, body exfoliation, and waxing directly through WhatsApp." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="D3 Glow Spa" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:title" content="D3 Glow Spa | Mobile Spa in Orange Park &amp; Jacksonville" />
+  <meta property="og:title" content="D3 Glow Spa | Spa" />
   <meta property="og:description"
-    content="Mobile facials, nail care, body exfoliation, and waxing by appointment in Orange Park and Jacksonville, Florida." />
+    content="Facials, nail care, body exfoliation, and waxing." />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>D3 Glow Spa | Mobile Spa in Orange Park &amp; Jacksonville</title>
+  <title>D3 Glow Spa | Spa</title>
   <link rel="icon" href="/images/Logos/favicon-d3-glow-spa-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/images/Logos/favicon-d3-glow-spa-180.png" sizes="180x180" />
   <link rel="stylesheet" href="/src/styles.css" />
@@ -50,30 +50,54 @@
 
   <main id="content">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy" data-reveal>
-          <p class="eyebrow">Nails · Skin · Wellness</p>
-          <h1 id="hero-title">Mobile facials, nails and wellness <em>in Orange Park and Jacksonville.</em></h1>
-          <p class="hero-lede">D3 Glow Spa brings facials, manicures, pedicures, body exfoliation, and waxing to your
-            location. Book through WhatsApp to confirm service availability and travel details.</p>
-          <div class="hero-actions"><a class="button button--gold" href="#catalog">Explore Services</a><a
-              class="text-link" href="#contact" data-booking>Booking information</a>
+      <h1 class="visually-hidden" id="hero-title">D3 Glow Spa · Beauty and wellness</h1>
+      <div class="container hero-presentation">
+        <div class="hero-slideshow" role="region" aria-label="Our services slideshow" aria-live="off">
+          <input class="slideshow-pause" type="checkbox" id="slideshow-pause" aria-label="Pause the automatic slideshow" />
+          <label class="slideshow-control" for="slideshow-pause" aria-hidden="true">
+            <span class="slideshow-pause-text">Ⅱ <span>Pause</span></span>
+            <span class="slideshow-play-text">▶ <span>Play</span></span>
+          </label>
+          <div class="slideshow-frames">
+            <img class="slideshow-slide" src="/images/slideshow/spa-pedicure-1280.webp"
+              srcset="/images/slideshow/spa-pedicure-640.webp 640w, /images/slideshow/spa-pedicure-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Spa pedicure with steam and a moisturizing treatment" width="1280" height="1170" fetchpriority="high" />
+            <img class="slideshow-slide" src="/images/slideshow/warm-manicure-1280.webp"
+              srcset="/images/slideshow/warm-manicure-640.webp 640w, /images/slideshow/warm-manicure-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Glossy manicure in warm nude and terracotta shades" width="1280" height="853" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/accessible-manicure-1280.webp"
+              srcset="/images/slideshow/accessible-manicure-640.webp 640w, /images/slideshow/accessible-manicure-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="D3 Glow Spa professional giving a manicure to a woman using a wheelchair" width="1280" height="1057" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/leg-waxing-1280.webp"
+              srcset="/images/slideshow/leg-waxing-640.webp 640w, /images/slideshow/leg-waxing-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Professional wax application for leg hair removal" width="1280" height="853" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/body-exfoliation-1280.webp"
+              srcset="/images/slideshow/body-exfoliation-640.webp 640w, /images/slideshow/body-exfoliation-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Professional body exfoliation with a pink scrub on the back" width="1280" height="1067" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/pink-nail-art-1280.webp"
+              srcset="/images/slideshow/pink-nail-art-640.webp 640w, /images/slideshow/pink-nail-art-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Pink nail art with flowers, hearts, and glitter" width="1280" height="853" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/facial-treatment-1280.webp"
+              srcset="/images/slideshow/facial-treatment-640.webp 640w, /images/slideshow/facial-treatment-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Professional facial treatment with skin care equipment" width="1280" height="1067" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/wood-therapy-1280.webp"
+              srcset="/images/slideshow/wood-therapy-640.webp 640w, /images/slideshow/wood-therapy-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Body treatment with wooden massage tools" width="1280" height="1170" decoding="async" />
           </div>
-          <p class="consultation-note" data-free-consultation><span aria-hidden="true">✦</span> Complimentary
-            consultation before every
-            treatment or service.</p>
         </div>
-        <figure class="hero-media" data-reveal>
-          <picture>
-            <img src="/images/hero-facial.png"
-              srcset="/images/hero-facial-540.png 540w, /images/hero-facial-810.png 810w, /images/hero-facial.png 1312w"
-              sizes="(max-width: 38rem) calc(100vw - 1.25rem), calc(100vw - 2rem)"
-              alt="Adult woman receiving a professional facial treatment" width="1312" height="1199"
-              fetchpriority="high" />
-          </picture>
-          <figcaption aria-hidden="true">01 · Facial care</figcaption>
-        </figure>
+        <div class="hero-actions">
+          <a class="button button--gold" href="#catalog">Explore Services</a>
+          <a class="text-link" href="#contact" data-booking>Booking information</a>
+        </div>
+        <p class="consultation-note" data-free-consultation><span aria-hidden="true">✦</span> Complimentary consultation before every treatment or service.</p>
       </div>
     </section>
     <section class="experience-section section" id="outstanding" aria-labelledby="experiences-title">

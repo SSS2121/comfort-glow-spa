@@ -126,6 +126,19 @@ function configuredLocation() {
 // =============================================================================
 // 3. BUSINESS DETAILS, HOURS, POLICIES, AND WHATSAPP BOOKING
 // =============================================================================
+function configureSlideshow() {
+  for (const slideshow of document.querySelectorAll(".hero-slideshow")) {
+    const images = Array.from(slideshow.querySelectorAll(".slideshow-slide"));
+    // CSS owns the timing. Start only once every photo is decoded so that a
+    // slower connection cannot introduce empty frames into the sequence.
+    Promise.all(images.map((image) => image.decode()))
+      .then(() => slideshow.classList.add("is-ready"))
+      .catch(() => {
+        // Keep the first photo visible if another image cannot be downloaded.
+      });
+  }
+}
+
 function configureBusinessDetails() {
   const brandName = typeof siteConfig.brandName === "string" && siteConfig.brandName.trim()
     ? siteConfig.brandName.trim()
@@ -522,6 +535,7 @@ function configureReveal() {
 // =============================================================================
 // Configure static details first, then controls, rendering, and visual effects.
 configureBusinessDetails();
+configureSlideshow();
 state.categoryId = configuredCategoryFromUrl();
 configureNavigation();
 configureLocaleLinks();

@@ -10,9 +10,9 @@ export const publicRoutes = Object.freeze([
 
 export const seoCopy = Object.freeze({
   es: Object.freeze({
-    title: "D3 Glow Spa | Spa a Domicilio en Orange Park y Jacksonville",
+    title: "D3 Glow Spa | Spa",
     description:
-      "Reserva faciales, manicura, pedicura, exfoliación corporal y depilación a domicilio en Orange Park y Jacksonville, FL, directamente por WhatsApp.",
+      "Reserva faciales, manicura, pedicura, exfoliación corporal y depilación directamente por WhatsApp.",
     services: Object.freeze([
       "Manicura y cuidado de uñas",
       "Pedicura",
@@ -23,9 +23,9 @@ export const seoCopy = Object.freeze({
     ]),
   }),
   en: Object.freeze({
-    title: "D3 Glow Spa | Mobile Spa in Orange Park & Jacksonville",
+    title: "D3 Glow Spa | Spa",
     description:
-      "Book mobile facials, manicures, pedicures, body exfoliation, and waxing in Orange Park and Jacksonville, FL, directly through WhatsApp.",
+      "Book facials, manicures, pedicures, body exfoliation, and waxing directly through WhatsApp.",
     services: Object.freeze([
       "Manicures and nail care",
       "Pedicures",

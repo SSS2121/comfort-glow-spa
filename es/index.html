@@ -8,15 +8,14 @@
   <meta name="theme-color" content="#0D2F26" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="description"
-    content="Reserva faciales, manicura, pedicura, exfoliación corporal y depilación a domicilio en Orange Park y Jacksonville, FL, directamente por WhatsApp." />
+    content="Reserva faciales, manicura, pedicura, exfoliación corporal y depilación directamente por WhatsApp." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="D3 Glow Spa" />
   <meta property="og:locale" content="es_US" />
-  <meta property="og:title" content="D3 Glow Spa | Spa a Domicilio en Orange Park y Jacksonville" />
-  <meta property="og:description"
-    content="Faciales, cuidado de uñas, exfoliación corporal y depilación a domicilio en Orange Park y Jacksonville, Florida." />
+  <meta property="og:title" content="D3 Glow Spa | Spa" />
+  <meta property="og:description" content="Faciales, cuidado de uñas, exfoliación corporal y depilación." />
   <meta name="twitter:card" content="summary_large_image" />
-  <title>D3 Glow Spa | Spa a Domicilio en Orange Park y Jacksonville</title>
+  <title>D3 Glow Spa | Spa</title>
   <link rel="icon" href="/images/Logos/favicon-d3-glow-spa-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/images/Logos/favicon-d3-glow-spa-180.png" sizes="180x180" />
   <link rel="stylesheet" href="/src/styles.css" />
@@ -57,32 +56,54 @@
 
   <main id="contenido">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy" data-reveal>
-          <p class="eyebrow">Uñas · Piel · Bienestar</p>
-          <h1 id="hero-title">Faciales, uñas y bienestar a domicilio <em>en Orange Park y Jacksonville.</em></h1>
-          <p class="hero-lede">D3 Glow Spa lleva faciales, manicura, pedicura, exfoliación corporal y depilación hasta
-            tu ubicación. Reserva por WhatsApp para confirmar disponibilidad y detalles de desplazamiento.</p>
-          <div class="hero-actions">
-            <a class="button button--gold" href="#catalogo">Explorar servicios</a>
-            <a class="text-link" href="#contacto" data-booking>Información de reserva</a>
+      <h1 class="visually-hidden" id="hero-title">D3 Glow Spa · Belleza y bienestar</h1>
+      <div class="container hero-presentation">
+        <div class="hero-slideshow" role="region" aria-label="Presentación de nuestros servicios" aria-live="off">
+          <input class="slideshow-pause" type="checkbox" id="slideshow-pause" aria-label="Pausar la presentación automática" />
+          <label class="slideshow-control" for="slideshow-pause" aria-hidden="true">
+            <span class="slideshow-pause-text">Ⅱ <span>Pausar</span></span>
+            <span class="slideshow-play-text">▶ <span>Reproducir</span></span>
+          </label>
+          <div class="slideshow-frames">
+            <img class="slideshow-slide" src="/images/slideshow/spa-pedicure-1280.webp"
+              srcset="/images/slideshow/spa-pedicure-640.webp 640w, /images/slideshow/spa-pedicure-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Pedicura spa con vapor y tratamiento hidratante" width="1280" height="1170" fetchpriority="high" />
+            <img class="slideshow-slide" src="/images/slideshow/warm-manicure-1280.webp"
+              srcset="/images/slideshow/warm-manicure-640.webp 640w, /images/slideshow/warm-manicure-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Manicura brillante en tonos cálidos, nude y terracota" width="1280" height="853" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/accessible-manicure-1280.webp"
+              srcset="/images/slideshow/accessible-manicure-640.webp 640w, /images/slideshow/accessible-manicure-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Profesional de D3 Glow Spa realizando una manicura a una mujer en silla de ruedas" width="1280" height="1057" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/leg-waxing-1280.webp"
+              srcset="/images/slideshow/leg-waxing-640.webp 640w, /images/slideshow/leg-waxing-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Aplicación profesional de cera para depilación en una pierna" width="1280" height="853" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/body-exfoliation-1280.webp"
+              srcset="/images/slideshow/body-exfoliation-640.webp 640w, /images/slideshow/body-exfoliation-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Exfoliación corporal profesional con un producto rosado en la espalda" width="1280" height="1067" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/pink-nail-art-1280.webp"
+              srcset="/images/slideshow/pink-nail-art-640.webp 640w, /images/slideshow/pink-nail-art-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Diseño de uñas rosadas con flores, corazones y brillo" width="1280" height="853" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/facial-treatment-1280.webp"
+              srcset="/images/slideshow/facial-treatment-640.webp 640w, /images/slideshow/facial-treatment-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Tratamiento facial profesional con equipo de cuidado de la piel" width="1280" height="1067" decoding="async" />
+            <img class="slideshow-slide" src="/images/slideshow/wood-therapy-1280.webp"
+              srcset="/images/slideshow/wood-therapy-640.webp 640w, /images/slideshow/wood-therapy-1280.webp 1280w"
+              sizes="(max-width: 38rem) calc(100vw - 1.25rem), (max-width: 80rem) calc(100vw - 2rem), 78rem"
+              alt="Tratamiento corporal con instrumentos de maderoterapia" width="1280" height="1170" decoding="async" />
           </div>
-          <p class="consultation-note" data-free-consultation><span aria-hidden="true">✦</span> Consulta gratuita antes
-            de cada tratamiento o
-            servicio.</p>
         </div>
-
-        <figure class="hero-media" data-reveal>
-          <picture>
-            <img src="/images/hero-facial.png"
-              srcset="/images/hero-facial-540.png 540w, /images/hero-facial-810.png 810w, /images/hero-facial.png 1312w"
-              sizes="(max-width: 38rem) calc(100vw - 1.25rem), calc(100vw - 2rem)"
-              alt="Mujer adulta recibiendo un tratamiento facial profesional" width="1312" height="1199"
-              fetchpriority="high" />
-          </picture>
-          <figcaption aria-hidden="true">01 · Cuidado facial</figcaption>
-        </figure>
+        <div class="hero-actions">
+          <a class="button button--gold" href="#catalogo">Explorar servicios</a>
+          <a class="text-link" href="#contacto" data-booking>Información de reserva</a>
+        </div>
+        <p class="consultation-note" data-free-consultation><span aria-hidden="true">✦</span> Consulta gratuita antes de cada tratamiento o servicio.</p>
       </div>
     </section>
     <section class="experience-section section" id="destacado" aria-labelledby="experiences-title">
@@ -219,7 +240,8 @@
           <p class="eyebrow eyebrow--dark">Bienestar en tu hogar</p>
           <h2 id="home-service-title">Belleza y bienestar <em>en tu ubicación</em></h2>
           <p>D3 Glow Spa ofrece servicios móviles con cita previa en Orange Park y Jacksonville. Escríbenos por
-            WhatsApp para confirmar con el dueño el servicio solicitado, la disponibilidad y los detalles de traslado.</p>
+            WhatsApp para confirmar con el dueño el servicio solicitado, la disponibilidad y los detalles de traslado.
+          </p>
           <ul class="home-service-features">
             <li>Atención en la dirección del cliente.</li>
             <li>Disponibilidad y traslado confirmados por WhatsApp.</li>
@@ -278,7 +300,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div><strong data-brand>D3 Glow Spa</strong>
-        <p>Servicios de belleza y bienestar a domicilio · <span data-location>Orange Park, Florida y Jacksonville, Florida</span></p>
+        <p>Servicios de belleza y bienestar a domicilio · <span data-location>Orange Park, Florida y Jacksonville,
+            Florida</span></p>
       </div>
       <a href="/en/" hreflang="en-US" lang="en" data-locale-link="en">English</a>
       <div class="footer-links">

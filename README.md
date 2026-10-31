@@ -43,6 +43,8 @@ npm.cmd run check:browser
 
 This command starts an isolated Vite preview, opens both languages in headless Edge at 320 px, 390 px, and 1440 px, and verifies that the header stays inside the viewport, the transparent logo loads, its text fallback is not duplicated, and no horizontal overflow is introduced. It closes the temporary browser profile and preview automatically.
 
+The browser check also verifies all eight slideshow images, the 1.5-second cadence, 300 ms dissolves, the last-to-first transition, pause/play, and reduced motion. Screenshots are saved under `artifacts/screenshots/slideshow/` (ignored by Git).
+
 The browser retains its default sandbox. Only if a controlled test container prevents it from starting can it be run temporarily with `$env:BROWSER_NO_SANDBOX="1"`; this option should not be used for everyday browsing or with untrusted content.
 
 ## Vercel Web Analytics
@@ -99,6 +101,8 @@ Vite copies the contents of `public/` directly to the root of the site. That is 
 The current photographs were supplied or explicitly approved by the client. Their filenames and placements are contractual project data: `depilation.png` remains in the Depilación/Hair Removal featured card, the other featured photographs remain with their respective services, `nails.png` and `toenails.png` remain in the gallery, and `accessible-home-care.png` remains in the reduced-mobility section.
 
 The confirmed WhatsApp number is stored in `src/config/site.js` using only digits and its country code, without `+`, spaces, or hyphens. The general CTAs and those for each service use it to create public booking links automatically. No WhatsApp key or environment variable is needed.
+
+The ES/EN hero uses the eight supplied photographs from `assets/masters/client/slideshow/`. The image build creates uncropped 640/1280 px WebP versions in `public/images/slideshow/`. CSS runs a 12-second loop with a new photo every 1.5 seconds and a 300 ms fade. The small initialization in `src/main.js` waits for the photos to decode; timing and pause/play are handled by CSS. The first photo remains static with reduced motion, without JavaScript, or if another photo fails to load.
 
 The transparent web-ready logo is integrated from `/images/Logos/logo-d3-glow-spa-640.png`. Its 2067×761 master is stored at `assets/masters/client/logo-d3-glow-spa.png`; the image build validates its dimensions, alpha channel, and public copy before creating 320 px, 640 px, and 1280 px variants. It also derives 32 px, 180 px, and 512 px transparent favicons from the original D3 monogram without redrawing it.
 
