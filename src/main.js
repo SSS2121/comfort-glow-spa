@@ -95,34 +95,6 @@ function setContactValue(selector, value) {
   }
 }
 
-function configuredLocation() {
-  const location = siteConfig.location;
-  if (!location || typeof location !== "object") return null;
-
-  const serviceAreas = Array.isArray(location.serviceAreas)
-    ? location.serviceAreas
-      .map((area) => localizedConfig(area?.label))
-      .filter(Boolean)
-    : [];
-  if (serviceAreas.length > 0) {
-    const conjunction = language === "es" ? " y " : " and ";
-    return serviceAreas.length === 1
-      ? serviceAreas[0]
-      : `${serviceAreas.slice(0, -1).join(", ")}${conjunction}${serviceAreas.at(-1)}`;
-  }
-
-  const regionAndPostalCode = [location.addressRegion, location.postalCode]
-    .filter((value) => typeof value === "string" && value.trim())
-    .join(" ");
-  const addressParts = [
-    location.streetAddress,
-    location.addressLocality,
-    regionAndPostalCode,
-  ].filter((value) => typeof value === "string" && value.trim());
-
-  return addressParts.length > 0 ? addressParts.join(", ") : null;
-}
-
 // =============================================================================
 // 3. BUSINESS DETAILS, HOURS, POLICIES, AND WHATSAPP BOOKING
 // =============================================================================
@@ -172,7 +144,6 @@ function configureBusinessDetails() {
   }
 
   setContactValue("[data-hours]", localizedConfig(siteConfig.hours));
-  setContactValue("[data-location]", configuredLocation());
 
   const bookingPolicy = siteConfig.bookingPolicy;
   if (bookingPolicy && typeof bookingPolicy === "object") {

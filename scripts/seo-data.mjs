@@ -63,26 +63,6 @@ export function absolutePublicUrl(path) {
   return origin ? new URL(path, `${origin}/`).href : null;
 }
 
-export function hasConfiguredLocality() {
-  const { addressLocality, addressRegion } = siteConfig.location ?? {};
-  return [addressLocality, addressRegion]
-    .every((value) => typeof value === "string" && value.trim().length > 0);
-}
-
-function cleanString(value) {
-  return typeof value === "string" && value.trim() ? value.trim() : null;
-}
-
-export function localizedServiceAreas(language) {
-  const areas = siteConfig.location?.serviceAreas;
-  if (!Array.isArray(areas)) return [];
-
-  return areas.flatMap((area) => {
-    const label = cleanString(area?.label?.[language]);
-    return label ? [{ ...area, label }] : [];
-  });
-}
-
 function publicSocialProfiles() {
   return (siteConfig.socialProfileUrls ?? []).filter((value) => {
     try {
@@ -118,7 +98,6 @@ export function structuredData(language) {
   const origin = configuredSiteOrigin();
   const logoUrl = origin ? absolutePublicUrl(siteConfig.logoPath) : null;
   const pageUrl = origin ? absolutePublicUrl(`/${language}/`) : null;
-  const location = siteConfig.location ?? {};
   const graph = [];
 
   const website = {
@@ -160,37 +139,6 @@ export function structuredData(language) {
     business.url = pageUrl;
     business.image = absolutePublicUrl("/images/hero-facial.png");
     business.logo = logoUrl;
-  }
-
-  if (hasConfiguredLocality()) {
-    business.address = {
-      "@type": "PostalAddress",
-      streetAddress: cleanString(location.streetAddress) ?? undefined,
-      addressLocality: cleanString(location.addressLocality),
-      addressRegion: cleanString(location.addressRegion),
-      postalCode: cleanString(location.postalCode) ?? undefined,
-      addressCountry: cleanString(location.addressCountry) ?? "US",
-    };
-  }
-
-  const serviceAreas = localizedServiceAreas(language);
-  if (serviceAreas.length > 0) {
-    business.areaServed = serviceAreas.map((area) => ({
-      "@type": "City",
-      name: area.label,
-      containedInPlace: {
-        "@type": "State",
-        name: area.addressRegion === "FL" ? "Florida" : area.addressRegion,
-      },
-    }));
-  }
-
-  if (Number.isFinite(location.latitude) && Number.isFinite(location.longitude)) {
-    business.geo = {
-      "@type": "GeoCoordinates",
-      latitude: location.latitude,
-      longitude: location.longitude,
-    };
   }
 
   const sameAs = publicSocialProfiles();

@@ -62,30 +62,18 @@ function validateLocalizedPage(html, language) {
   assert(html.includes('<link rel="alternate" hreflang="es-US"'));
   assert(html.includes('<link rel="alternate" hreflang="en-US"'));
   assert(html.includes('<link rel="alternate" hreflang="x-default"'));
-  assert(html.includes('<meta name="geo.region" content="US-FL">'));
-  assert(html.includes('<meta name="geo.placename" content="Orange Park">'));
+  assert(!/<meta\b[^>]*name=["']geo\./iu.test(html));
+  assert(!html.includes("data-location"));
   assert(html.includes(`<meta name="twitter:image" content="${expectedOrigin}/images/hero-facial.png">`));
-  assert(html.includes("Orange Park"));
-  assert(html.includes("Jacksonville"));
   assert(html.includes("WhatsApp"));
-  assert(!html.includes("Visit our Orange Park studio"));
-  assert(!html.includes("Visita nuestro espacio en Orange Park"));
 
   const structuredData = extractStructuredData(html);
   const business = structuredData["@graph"].find((item) => item["@id"] === `${expectedOrigin}/#business`);
   assert(business, "Localized page is missing the D3 Glow Spa business entity.");
   assert.deepEqual(business["@type"], ["DaySpa", "BeautySalon"]);
-  assert.equal(business.address.addressLocality, "Orange Park");
-  assert.equal(business.address.addressRegion, "FL");
-  assert.equal(business.address.addressCountry, "US");
-  assert.equal(business.address.streetAddress, undefined);
-  assert.equal(business.address.postalCode, undefined);
+  assert.equal(business.address, undefined);
   assert.equal(business.geo, undefined);
-  assert.deepEqual(
-    business.areaServed.map((area) => area.name),
-    ["Orange Park, Florida", "Jacksonville, Florida"],
-  );
-  assert(business.areaServed.every((area) => area["@type"] === "City"));
+  assert.equal(business.areaServed, undefined);
   assert.equal(business.openingHoursSpecification[0].opens, "08:00");
   assert.equal(business.openingHoursSpecification[0].closes, "18:00");
 }
@@ -116,8 +104,6 @@ const [gateway, english, spanish, sitemap, robots, llms] = await Promise.all([
 
 assert(gateway.includes(`<link rel="canonical" href="${expectedOrigin}/">`));
 assert(gateway.includes("D3 Glow Spa Mobile"));
-assert(gateway.includes("Orange Park"));
-assert(gateway.includes("Jacksonville"));
 validateLocalizedPage(english, "en");
 validateLocalizedPage(spanish, "es");
 
@@ -125,9 +111,7 @@ for (const route of ["/", "/en/", "/es/", "/en/privacy.html", "/es/privacidad.ht
   assert(sitemap.includes(`<loc>${expectedOrigin}${route}</loc>`), `Sitemap is missing ${route}.`);
 }
 assert(robots.includes(`Sitemap: ${expectedOrigin}/sitemap.xml`));
-assert(llms.includes("Orange Park, Florida"));
-assert(llms.includes("Jacksonville, Florida"));
-assert(llms.includes("does not receive customers at a public storefront"));
+assert(llms.includes("Booking is handled through the WhatsApp links"));
 
 const searchableOutput = [gateway, english, spanish, sitemap, robots, llms].join("\n");
 for (const obsoleteReference of [
@@ -139,4 +123,4 @@ for (const obsoleteReference of [
   assert(!searchableOutput.includes(obsoleteReference), `Found obsolete reference: ${obsoleteReference}`);
 }
 
-console.log("Production validation passed: transparent logo assets, local SEO, discovery files, and obsolete references are correct.");
+console.log("Production validation passed: transparent logo assets, SEO without location data, discovery files, and obsolete references are correct.");

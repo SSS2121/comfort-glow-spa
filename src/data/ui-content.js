@@ -14,7 +14,7 @@ export const uiContent = Object.freeze({
     eyebrow: "Uñas · Piel · Bienestar",
     heroTitle: "Belleza y bienestar a domicilio.",
     heroText:
-      "Faciales, manicura, pedicura, exfoliación corporal y depilación a domicilio en Orange Park y Jacksonville.",
+      "Faciales, manicura, pedicura, exfoliación corporal y depilación a domicilio.",
     exploreServices: "Explorar servicios",
     editorialNote: "Consulta gratuita antes de cada tratamiento o servicio.",
     experiencesEyebrow: "Los más especiales",
@@ -60,7 +60,7 @@ export const uiContent = Object.freeze({
     hoursLabel: "Horario",
     whatsappLabel: "WhatsApp",
     pending: "Por confirmar",
-    footerNote: "Servicios a domicilio · Orange Park y Jacksonville, Florida",
+    footerNote: "Servicios a domicilio",
     languageLabel: "Cambiar idioma a inglés",
     imageAlt: Object.freeze({
       hero: "Manos adultas con manicura natural sobre lino marfil y fondo verde oscuro",
@@ -91,7 +91,7 @@ export const uiContent = Object.freeze({
     eyebrow: "Nails · Skin · Wellness",
     heroTitle: "Mobile beauty and wellness at your door.",
     heroText:
-      "Facials, manicures, pedicures, body exfoliation, and waxing at your location in Orange Park and Jacksonville.",
+      "Facials, manicures, pedicures, body exfoliation, and waxing at your location.",
     exploreServices: "Explore Services",
     editorialNote: "Complimentary consultation before every treatment or service.",
     experiencesEyebrow: "Signature selections",
@@ -137,7 +137,7 @@ export const uiContent = Object.freeze({
     hoursLabel: "Hours",
     whatsappLabel: "WhatsApp",
     pending: "To be confirmed",
-    footerNote: "Mobile services · Orange Park and Jacksonville, Florida",
+    footerNote: "Mobile services",
     languageLabel: "Switch language to Spanish",
     imageAlt: Object.freeze({
       hero: "Adult hands with a natural manicure on ivory linen and a dark green background",

@@ -1,6 +1,6 @@
 # D3 Glow Spa
 
-> Mobile beauty and wellness services by appointment in Orange Park and Jacksonville, Florida.
+> Mobile beauty and wellness services by appointment.
 
 ## Official pages
 
@@ -18,11 +18,9 @@
 - Body exfoliation and care
 - Mobile beauty and wellness services
 
-## Booking and location
+## Booking
 
 - Booking is handled through the WhatsApp links published on the official pages.
-- Mobile service area: Orange Park, Florida and Jacksonville, Florida
-- D3 Glow Spa does not receive customers at a public storefront.
 - Prices are displayed in USD on the official service catalog.
 
 ## Content guidance

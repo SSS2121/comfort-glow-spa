@@ -3,7 +3,7 @@
 
 # D3 Glow Spa — Bilingual Web Base
 
-A static, responsive, and bilingual website for D3 Glow Spa, a nail, beauty, and wellness business serving a local audience in the United States. It is prepared for deployment on Vercel without a backend, using semantic HTML, modern CSS, and vanilla JavaScript with Vite.
+A static, responsive, and bilingual website for D3 Glow Spa, a nail, beauty, and wellness business. It is prepared for deployment on Vercel without a backend, using semantic HTML, modern CSS, and vanilla JavaScript with Vite.
 
 ## Current Status
 
@@ -70,7 +70,7 @@ Vercel must use the Vite preset; the output is generated in `dist/`. The configu
 ## Where to Update Information
 
 - Business data, hours, confirmed WhatsApp number, and booking rules: `src/config/site.js`.
-- Production domain and exact U.S. location: `src/config/site.js` (`siteUrl` and `location`). Keep unknown fields as `null`; never publish approximate coordinates.
+- Production domain: `src/config/site.js` (`siteUrl`).
 - General ES/EN texts: `src/data/ui-content.js` and the HTML for each language.
 - Services and prices: `src/data/services.js`.
 - Palette and design: `src/styles.css`.
@@ -106,30 +106,17 @@ The ES/EN hero uses the eight supplied photographs from `assets/masters/client/s
 
 The transparent web-ready logo is integrated from `/images/Logos/logo-d3-glow-spa-640.png`. Its 2067×761 master is stored at `assets/masters/client/logo-d3-glow-spa.png`; the image build validates its dimensions, alpha channel, and public copy before creating 320 px, 640 px, and 1280 px variants. It also derives 32 px, 180 px, and 512 px transparent favicons from the original D3 monogram without redrawing it.
 
-## Domain, Local SEO, and AI Discovery
+## Domain, SEO, and AI Discovery
 
-The production origin and authorized city-level location are centralized in `src/config/site.js`:
+The production origin is centralized in `src/config/site.js`:
 
 ```js
 siteUrl: "https://d3glowspa.com",
-location: {
-  streetAddress: null,
-  addressLocality: "Orange Park",
-  addressRegion: "FL",
-  postalCode: null,
-  addressCountry: "US",
-  serviceAreas: [
-    { addressLocality: "Orange Park", addressRegion: "FL" },
-    { addressLocality: "Jacksonville", addressRegion: "FL" },
-  ],
-  latitude: null,
-  longitude: null,
-},
 ```
 
-The business is mobile-only and has authorized Orange Park and Jacksonville, Florida, as its public service areas. It does not receive customers at a storefront. Keep the private street address, ZIP code, and coordinates as `null`; never publish approximate or private location data. `npm.cmd run build` injects canonical and `hreflang` links, Open Graph/Twitter URLs, `DaySpa` and `BeautySalon` structured data with both cities in `areaServed`, and generates `public/sitemap.xml` for `https://d3glowspa.com`.
+`npm.cmd run build` injects canonical and `hreflang` links, Open Graph/Twitter URLs, `DaySpa` and `BeautySalon` structured data, and generates `public/sitemap.xml` for `https://d3glowspa.com`.
 
-`public/robots.txt` permits normal search crawlers plus the current search/retrieval crawlers used by OpenAI, Anthropic, and Perplexity. Training-only crawlers are blocked independently; Google Search and its AI search features remain accessible through Googlebot. `public/llms.txt` gives compatible AI systems a concise map of the bilingual public pages and identifies Orange Park and Jacksonville as mobile service areas.
+`public/robots.txt` permits normal search crawlers plus the current search/retrieval crawlers used by OpenAI, Anthropic, and Perplexity. Training-only crawlers are blocked independently; Google Search and its AI search features remain accessible through Googlebot. `public/llms.txt` gives compatible AI systems a concise map of the bilingual public pages.
 
 ### Vercel and search launch checklist
 
@@ -137,7 +124,6 @@ The business is mobile-only and has authorized Orange Park and Jacksonville, Flo
 2. Make `d3glowspa.com` the primary domain and configure `www` as a permanent redirect to the apex domain.
 3. Apply the exact DNS records shown by Vercel and verify HTTPS before announcing the site.
 4. Verify the domain property in Google Search Console and submit `https://d3glowspa.com/sitemap.xml`.
-5. Create or claim one service-area Google Business Profile using the same business name, phone, and opening hours published on the website. Hide the private address and add Orange Park and Jacksonville as the service areas.
 
 ## Approved Palette
 

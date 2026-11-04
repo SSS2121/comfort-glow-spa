@@ -5,7 +5,6 @@ import { siteConfig } from "../src/config/site.js";
 import {
   absolutePublicUrl,
   configuredSiteOrigin,
-  localizedServiceAreas,
   publicRoutes,
   seoCopy,
 } from "./seo-data.mjs";
@@ -13,8 +12,6 @@ import {
 const projectRoot = resolve(import.meta.dirname, "..");
 const publicDirectory = resolve(projectRoot, "public");
 const origin = configuredSiteOrigin();
-const locationStatus = localizedServiceAreas("en").map((area) => area.label).join(" and ")
-  || "Pending confirmation; no service area is published yet.";
 
 const robotsGroups = [
   "User-agent: *\nAllow: /",
@@ -33,7 +30,7 @@ const robots = `${robotsGroups.join("\n\n")}${origin ? `\n\nSitemap: ${origin}/s
 const pageLink = (label, path) => `[${label}](${absolutePublicUrl(path) ?? path})`;
 const llms = `# ${siteConfig.brandName}
 
-> Mobile beauty and wellness services by appointment in Orange Park and Jacksonville, Florida.
+> Mobile beauty and wellness services by appointment.
 
 ## Official pages
 
@@ -46,11 +43,9 @@ const llms = `# ${siteConfig.brandName}
 
 ${seoCopy.en.services.map((service) => `- ${service}`).join("\n")}
 
-## Booking and location
+## Booking
 
 - Booking is handled through the WhatsApp links published on the official pages.
-- Mobile service area: ${locationStatus}
-- D3 Glow Spa does not receive customers at a public storefront.
 - Prices are displayed in USD on the official service catalog.
 
 ## Content guidance

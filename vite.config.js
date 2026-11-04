@@ -4,10 +4,8 @@ import { defineConfig } from "vite";
 import {
   absolutePublicUrl,
   configuredSiteOrigin,
-  hasConfiguredLocality,
   structuredData,
 } from "./scripts/seo-data.mjs";
-import { siteConfig } from "./src/config/site.js";
 
 function normalizedPagePath(path) {
   if (path === "/index.html") return "/";
@@ -62,7 +60,7 @@ function seoPlugin() {
               tag: "meta",
               attrs: {
                 property: "og:image:alt",
-                content: "D3 Glow Spa mobile facial services in Orange Park and Jacksonville, Florida",
+                content: "D3 Glow Spa mobile facial services",
               },
               injectTo: "head",
             },
@@ -78,7 +76,7 @@ function seoPlugin() {
               tag: "meta",
               attrs: {
                 name: "twitter:image:alt",
-                content: "D3 Glow Spa mobile facial services in Orange Park and Jacksonville, Florida",
+                content: "D3 Glow Spa mobile facial services",
               },
               injectTo: "head",
             },
@@ -108,24 +106,6 @@ function seoPlugin() {
             children: structuredData(language),
             injectTo: "head",
           });
-        }
-
-        if (hasConfiguredLocality() && (path === "/es/" || path === "/en/")) {
-          tags.push(
-            {
-              tag: "meta",
-              attrs: {
-                name: "geo.region",
-                content: `${siteConfig.countryCode}-${siteConfig.location.addressRegion}`,
-              },
-              injectTo: "head",
-            },
-            {
-              tag: "meta",
-              attrs: { name: "geo.placename", content: siteConfig.location.addressLocality },
-              injectTo: "head",
-            },
-          );
         }
 
         return tags;
